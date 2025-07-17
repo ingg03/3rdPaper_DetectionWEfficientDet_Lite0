@@ -7,20 +7,20 @@
 
 ##  Description
 
-본 프로젝트는 **Raspberry Pi 5**와 **Coral Dual Edge TPU (PCIe)** 기반으로 동작하는 **실시간 자동차 번호판 인식 시스템**입니다.  
-기존 YOLOv8n 기반 시스템을 개선하여, **EfficientDet_Lite0 모델**을 사용해 탐지 성능을 향상시키고,  
-전체 파이프라인 속도 및 경량화를 모두 달성하였습니다.  
+이 프로젝트는 **Raspberry Pi 5**와 **Coral Dual Edge TPU (PCIe)** 환경에서 구동되는 **실시간 차량 번호판 인식 시스템**입니다.
 
-전체 파이프라인은 네트워크 연결 없이도 작동하는 **완전한 On-Device AI 시스템**입니다.
+기존 YOLOv8n 기반 구성의 한계를 극복하고자, 탐지 모델을 **EfficientDet-Lite0**으로 교체하여 정확도 및 처리 속도 향상을 달성했습니다.
+
+전체 시스템은 인터넷 연결 없이도 완전히 작동하는 **온디바이스(ON-Device) AI 시스템**으로, 경량성과 실시간성을 모두 갖춘 것이 특징입니다.
 
 ---
 
 ##  System Pipeline
 
-1. **EfficientDet-Lite0** (TPU 실행): 차량 번호판 탐지  
-2. 이미지 Crop 및 Resize (94×24×3)  
+1. **EfficientDet-Lite0** (Dual Edge TPU 실행): 차량 번호판 탐지  
+2. 탐지된 번호판 영역 이미지 Crop 및 Resize (94×24×3)  
 3. 스페이스바 입력 시 **LPRNet** OCR 실행 (CPU 실행)  
-4. 결과 문자열 Overlay → 10초간 이미지 상단에 표시  
+4. 추출된 문자열을 영상 상단에 Overlay (10초간 표시)  
 ![pipeline](./results/pipeline.png)
 
 ---
